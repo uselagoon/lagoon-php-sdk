@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+cd vendor/uselagoon/lagoon
+make api-development
+
+# Connects the Lando container group to the API container.
+docker network connect demolagoonsh_default lagoon_api_1 \
+  || echo "Docker network connect failed, but that's ok. Moving on."

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd vendor/uselagoon/lagoon
+docker-compose kill
+docker-compose rm -fv

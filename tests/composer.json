@@ -1,0 +1,17 @@
+{
+  "name": "uselagoon/lagoon-php-sdk-testing",
+  "description": "Pseudo-package to provide a Lagoon API instance.",
+  "repositories": [
+  ],
+  "require": {
+    "uselagoon/lagoon": "^1.13@dev"
+  },
+  "minimum-stability": "dev",
+  "bin": [
+    "scripts/api-start",
+    "scripts/api-stop",
+    "scripts/api-destroy",
+    "scripts/api-logs",
+    "scripts/api-test"
+  ]
+}
