@@ -21,6 +21,7 @@
   },
   "minimum-stability": "dev",
   "bin": [
+    "lagoon-php-sdk-test",
     "scripts/api-start",
     "scripts/api-stop",
     "scripts/api-destroy",
