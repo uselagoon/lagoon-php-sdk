@@ -2,6 +2,19 @@
   "name": "uselagoon/lagoon-php-sdk-testing",
   "description": "Pseudo-package to provide a Lagoon API instance.",
   "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "uselagoon/lagoon",
+        "type": "lagoon-platform",
+        "version": "v1.13.5",
+        "source": {
+          "url": "https://github.com/amazeeio/lagoon.git",
+          "type": "git",
+          "reference": "v1.13.5"
+        }
+      }
+    }
   ],
   "require": {
     "uselagoon/lagoon": "^1.13@dev"
