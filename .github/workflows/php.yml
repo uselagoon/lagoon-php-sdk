@@ -48,3 +48,9 @@ jobs:
 
     # - name: Run test suite
     #   run: composer run-script test
+
+      - name: Start Lagoon API
+        run: bin/api-start
+
+      - name: Test Lagoon API
+        run: bin/api-test
