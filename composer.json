@@ -14,6 +14,19 @@
     {
       "type": "path",
       "url": "tests"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "uselagoon/lagoon",
+        "type": "lagoon-platform",
+        "version": "v1.13.5",
+        "source": {
+          "url": "https://github.com/amazeeio/lagoon.git",
+          "type": "git",
+          "reference": "v1.13.5"
+        }
+      }
     }
   ],
   "require": {
