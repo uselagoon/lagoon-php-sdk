@@ -55,4 +55,7 @@ jobs:
         run: bin/api-test
 
       - name: Test Lagoon PHP SDK
-        run: bin/lagoon-php-sdk-test
+        run: |
+          echo "Waiting for test data to populate..."
+          sleep 4
+          bin/lagoon-php-sdk-test
