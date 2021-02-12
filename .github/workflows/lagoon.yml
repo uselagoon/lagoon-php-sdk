@@ -53,3 +53,6 @@ jobs:
 
       - name: Test Lagoon API
         run: bin/api-test
+
+      - name: Test Lagoon PHP SDK
+        run: bin/lagoon-php-sdk-test
