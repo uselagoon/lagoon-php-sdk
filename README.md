@@ -21,9 +21,10 @@ use Lagoon\LagoonClient;
 use Lagoon\LagoonResponse;
 
 // The full URL to the GraphQL endpoint.
-$endpoint = "https://lagoon.api:8000/graphql";
+$endpoint = "https://localhost:8000/graphql";
 
-// The Token to use to connect to the LagoonAPI. 
+// The Token to use to connect to the LagoonAPI.
+// @TODO: Provide a link to documentation on how to get a token. 
 $token = "APITokenFromLagoonAPI";
 
 $client = new LagoonClient($endpoint, $token);
