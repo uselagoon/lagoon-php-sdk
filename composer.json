@@ -19,7 +19,6 @@
       "type": "package",
       "package": {
         "name": "uselagoon/lagoon",
-        "description": "This pseudo-repository exists to make it simple to install Lagoon from source at a specific version.",
         "type": "lagoon-platform",
         "version": "v1.13.5",
         "source": {
