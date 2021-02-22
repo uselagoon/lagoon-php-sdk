@@ -1,0 +1,49 @@
+version: '3.2'
+services:
+  api-db:
+    image: uselagoon/api-db
+    ports:
+      - '3366:3306'
+  webhook-handler:
+    image: uselagoon/webhook-handler
+    command: yarn run dev
+    ports:
+      - '7777:3000'
+  broker:
+    image: uselagoon/broker-single
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+  webhooks2tasks:
+    image: uselagoon/webhooks2tasks
+    command: yarn run dev
+  api:
+    image: uselagoon/api
+    command: yarn run dev
+    depends_on:
+      - api-db
+      - keycloak
+    ports:
+      - '3000:3000'
+  ui:
+    image: uselagoon/ui
+    command: yarn run dev
+    ports:
+      - '8888:3000'
+  keycloak:
+    image: uselagoon/keycloak
+    user: '111111111'
+    depends_on:
+      - keycloak-db
+    ports:
+      - '8088:8080'
+  keycloak-db:
+    image: uselagoon/keycloak-db
+    ports:
+      - '3336:3306'
+  local-api-data-watcher-pusher:
+    depends_on:
+      - api
+    image: uselagoon/local-api-data-watcher-pusher
+  api-redis:
+    image: uselagoon/api-redis
