@@ -14,31 +14,35 @@ composer require uselagoon/lagoon-php-sdk
 
 ### Fetch all projects
 
+See [`tests/lagoon-php-sdk-test`](tests/lagoon-php-sdk-test) for a working example. This script is [tested on GitHub](https://github.com/uselagoon/lagoon-php-sdk/actions).
+
 ```php
 <?php
 
+require 'vendor/autoload.php';
+
 use Lagoon\LagoonClient;
-use Lagoon\LagoonResponse;
 
-// The full URL to the GraphQL endpoint.
-$endpoint = "https://localhost:8000/graphql";
+// The container exposes port 3000 on the host by default.
+$endpoint = "http://localhost:3000/graphql";
 
-// The Token to use to connect to the LagoonAPI.
-// @TODO: Provide a link to documentation on how to get a token. 
-$token = "APITokenFromLagoonAPI";
+// The development container uses this token for everyone.
+$token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJpc3MiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciIsImF1ZCI6ImFwaS5kZXYiLCJzdWIiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciJ9.GiSJpvNXF2Yj9IXVCsp7KrxVp8N2gcp7-6qpyNOakVw";
 
-$client = new LagoonClient($endpoint, $token);
+try {
+  $client = new LagoonClient($endpoint, $token);
+  $response = $client->project()->all()->execute();
 
-/** @var LagoonResponse $projects */
-$response = $client->project()->all()->execute();
-
-if ($response->hasErrors()) {
-  throw new \Exception("There were errors returned from the GraphQL API: " . implode(PHP_EOL, $response->errors()));
-}
-else {
-  $projects = $response->all();
-  print "Projects Found: " . count($projects);
-  print_r($projects);
+  if ($response->hasErrors()) {
+    throw new \Exception("There were errors returned from the GraphQL API: " . implode(PHP_EOL, $response->errors()));
+  }
+  else {
+    $projects = $response->all();
+    print "Projects Found: " . count($projects);
+  }
+} catch (\Exception $e) {
+   print "ERROR: " . $e->getMessage();
+   exit(1);
 }
 ```
 
@@ -62,12 +66,11 @@ use Lagoon\LagoonClient;
 
 $client = new LagoonClient($endpoint, $token);
 $project = [
-  'name' => 'my-proejct',
-  'customer' => 1,
-  'openshift' => 1,
-  'gitUrl' => 'git@github.com:test/test.git'
-  'productEnvironment' => 'master',
-  'branches' => 'master',
+  'name' => $name,
+  'gitUrl' => $gitUrl,
+  'openshift' => 2,
+  'productionEnvironment' => 'master',
+  'branches' => 'true',
 ];
 $response = $client->project()->add($project)->execute();
 ```
@@ -78,18 +81,26 @@ This package interacts with the Lagoon Container Hosting System's API.
 
 You need to have a running Lagoon API instance to develop and test against.
 
+This package includes the Lagoon codebase using the `require-dev` section of composer.json in the [`/tests`](./tests) folder.
+
 ### Launch Lagoon API Instance.
 
-To launch a development environment that includes this package and Lagoon API Containers, just use `composer`:
+Run the following commands to download Lagoon source to the `vendor/uselagoon/lagoon` folder.
 
-        # Composer install with --dev dependencies. 
+        # Composer install with --dev dependencies.  (default behavior)
         composer install
+
+        # Composer install without --dev dependencies. 
+        # Do this to build and release your codebase to production.
+        composer install --no-dev
 
         # Run bin/api-* scripts to start and test the API containers.
         bin/api-start
         bin/api-test
 
-The `bin/api-test` script will keep running until the API container is available at https://localhost:3000.
+### Tests
+
+The `bin/api-test` script will launch the containers and wait until the API container is available at https://localhost:3000.
 
 The `api-start` script is simply a wrapper for the `make api-development` command inside `uselagoon/lagoon`. This is the same command used by Lagoon developers to work on the API, so a full development environment is available.
 
