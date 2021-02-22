@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
-cd vendor/uselagoon/lagoon
+cd tests
 docker-compose logs -f $1
