@@ -104,24 +104,6 @@ The `bin/api-test` script will launch the containers and wait until the API cont
 
 The `api-start` script is simply a wrapper for the `make api-development` command inside `uselagoon/lagoon`. This is the same command used by Lagoon developers to work on the API, so a full development environment is available.
 
-### Use the Lagoon API Instance.
-
-Once the containers are running, set the default `$endpoint` and `$token` for the development containers.
-
-See [vendor/uselagoon/lagoon/docker-compose.yaml](vendor/uselagoon/lagoon/docker-compose.yaml)
-
-        // The container exposes port 3000 on the host by default. 
-        $endpoint = "https://localhost:3000/graphql";
-
-        // The development container uses this token for everyone. 
-        $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJpc3MiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciIsImF1ZCI6ImFwaS5kZXYiLCJzdWIiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciJ9.GiSJpvNXF2Yj9IXVCsp7KrxVp8N2gcp7-6qpyNOakVw";
-        
-        $client = new LagoonClient($endpoint, $token);
-        $projects = $client->project()->all()->execute()->all();
-
-        print_r($projects);
-
-
 ## About this Package
 
 
