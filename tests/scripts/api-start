@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -ex
+
+CI_BUILD_TAG=php_sdk
+
 cd vendor/uselagoon/lagoon
 make api-development
 
