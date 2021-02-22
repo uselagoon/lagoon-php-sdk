@@ -3,9 +3,8 @@ set -ex
 
 CI_BUILD_TAG=php_sdk
 
-cd vendor/uselagoon/lagoon
-make clean
-make api-development
+cd tests
+docker-compose up -d
 
 # Connects the Lando container group to the API container.
 docker network connect demolagoonsh_default lagoon_api_1 \

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd vendor/uselagoon/lagoon
+cd tests
 #docker-compose restart --no-deps api
 # Lando's docker compose version does not have "--no-deps".
 docker-compose restart api
