@@ -51,6 +51,9 @@ jobs:
       - name: Start Lagoon API
         run: bin/api-start
 
+      - name: Docker Containers
+        run: docker-compose --file vendor/uselagoon/lagoon/docker-compose.yaml ps --all
+
       - name: Test Lagoon API
         run: bin/api-test
 
