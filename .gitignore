@@ -1,5 +1,5 @@
 # ignore IDE/hidden/OS cache files
-.*
+.idea
 *~
 nbproject
 nb-configuration.xml
@@ -12,6 +12,8 @@ Desktop.ini
 
 # ignore Composer downloads
 /vendor/*
+/bin/
+composer.lock
 
 # keep some hiddens
 !.htaccess

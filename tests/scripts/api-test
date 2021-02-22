@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# This curl command verifies that the LagoonAPI endpoint is up and running, and can be accessed.
+API_URL=${API_URL:-http://localhost:3000/graphql}
+
+set -e
+
+function checkApi() {
+  curl --request POST \
+    --url $API_URL \
+    --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJpc3MiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciIsImF1ZCI6ImFwaS5kZXYiLCJzdWIiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciJ9.GiSJpvNXF2Yj9IXVCsp7KrxVp8N2gcp7-6qpyNOakVw' \
+    --header 'Content-Type: application/json' \
+    --data '{"query":"query {\n  allProjects {\n    id\n    name\n    environments {\n      id\n      name\n    }\n  }\n}\n"}' \
+    --output /dev/null \
+    --fail
+}
+
+echo "Testing access to local LagoonAPI located at: $API_URL"
+printf "Waiting for the Lagoon API..."
+until checkApi &> /dev/null
+do
+    sleep 1
+    printf "."
+done
+
+echo ""
+echo "GraphQL curl request to the Lagoon API was a success!"

@@ -1,13 +1,33 @@
 {
-  "name": "steveworley/lagoon-php-sdk",
-  "description": "Lagoon GraphQL SDK for PHP",
-  "keywords": [],
+  "name": "uselagon/lagoon-php-sdk",
+  "description": "PHP Library for interacting the the Lagoon API.",
+  "keywords": ["hosting", "lagoon", "devops", "sdk", "api"],
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "Steve Worley",
-      "email": "steven.worley@salsadigital.com.au"
+      "name": "Lagoon PHP SDK Team",
+      "homepage": "https://github.com/steveworley/lagoon-php-sdk/graphs/contributors"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "path",
+      "url": "tests"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "uselagoon/lagoon",
+        "description": "This pseudo-repository exists to make it simple to install Lagoon from source at a specific version.",
+        "type": "lagoon-platform",
+        "version": "v1.13.5",
+        "source": {
+          "url": "https://github.com/amazeeio/lagoon.git",
+          "type": "git",
+          "reference": "v1.13.5"
+        }
+      }
     }
   ],
   "require": {
@@ -16,7 +36,11 @@
   },
   "require-dev": {
     "couscous/couscous": "^1.7",
-    "phpunit/phpunit": "^7.5"
+    "phpunit/phpunit": "^7.5",
+    "uselagoon/lagoon-php-sdk-testing": "@dev"
+  },
+  "config": {
+    "bin-dir": "bin"
   },
   "scripts": {
     "test": "phpunit"
