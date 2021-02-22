@@ -1,5 +1,5 @@
 {
-  "name": "uselagon/lagoon-php-sdk",
+  "name": "uselagoon/lagoon-php-sdk",
   "description": "PHP Library for interacting the the Lagoon API.",
   "keywords": ["hosting", "lagoon", "devops", "sdk", "api"],
   "type": "library",
