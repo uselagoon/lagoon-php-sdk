@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -e
-cd tests
+THIS_FILE_PATH="$( cd "$(dirname $(readlink -f "$0"))" ; pwd -P )"
+cd $THIS_FILE_PATH
+
 docker-compose kill
 docker-compose rm -fv

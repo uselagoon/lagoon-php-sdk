@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-set -ex
+set -e
+THIS_FILE_PATH="$( cd "$(dirname $(readlink -f "$0"))" ; pwd -P )"
+cd $THIS_FILE_PATH
 
-CI_BUILD_TAG=php_sdk
-
-cd tests
 docker-compose up -d
 
 # Connects the Lando container group to the API container.

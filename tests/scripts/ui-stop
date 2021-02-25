@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
-cd tests
+set -e
+THIS_FILE_PATH="$( cd "$(dirname $(readlink -f "$0"))" ; pwd -P )"
+cd $THIS_FILE_PATH/../lagoon
+
 docker-compose stop

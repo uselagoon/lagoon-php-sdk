@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-cd tests
-#docker-compose restart --no-deps api
-# Lando's docker compose version does not have "--no-deps".
+set -e
+THIS_FILE_PATH="$( cd "$(dirname $(readlink -f "$0"))" ; pwd -P )"
+cd $THIS_FILE_PATH
+
 docker-compose restart api
