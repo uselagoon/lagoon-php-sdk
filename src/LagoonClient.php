@@ -18,6 +18,11 @@ class LagoonClient implements LagoonClientInterface {
   protected $client;
 
   /**
+   * The default token used for development instances of the Lagoon API.
+   */
+  const defaultToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJpc3MiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciIsImF1ZCI6ImFwaS5kZXYiLCJzdWIiOiJhcGktZGF0YS13YXRjaGVyLXB1c2hlciJ9.GiSJpvNXF2Yj9IXVCsp7KrxVp8N2gcp7-6qpyNOakVw';
+
+  /**
    * An array of additional headers to send with the request.
    */
   protected $headers = [];
@@ -30,7 +35,8 @@ class LagoonClient implements LagoonClientInterface {
   /**
    * {@inheritdoc}
    */
-  public function __construct($endpoint, $token) {
+  public function __construct($endpoint, $token = null) {
+    $token = $token?: self::defaultToken;
     $this->client = new Client($endpoint);
     $this->headers = [
       'Authorization' => "Bearer {$token}"
