@@ -3,6 +3,7 @@
 namespace Lagoon\Operation;
 
 use Lagoon\Operation\LagoonOperationBase;
+use Lagoon\Query\Users\FetchAll;
 use Lagoon\Query\Users\UsersBySshKey;
 use Lagoon\Mutation\User\Add;
 use Lagoon\Mutation\User\AddUserToProject;
@@ -18,14 +19,18 @@ class User extends LagoonOperationBase {
   const SSH_KEY = 'find_ssh_key';
   const ADD = 'add';
   const ADD_TO_PROJECT = 'add_to_project';
+  const FETCH_ALL = 'all';
 
   /**
    * {@inheritdoc}
    */
   protected function bind() {
     $this->addQuery(self::SSH_KEY, UsersBySshKey::class)
+      ->addQuery(self::FETCH_ALL, FetchAll::class)
       ->addMutation(self::ADD, Add::class)
-      ->addMutation(self::ADD_TO_PROJECT, AddUserToProject::class);
+      ->addMutation(self::ADD_TO_PROJECT, AddUserToProject::class)
+    ;
+
   }
 
   /**
@@ -72,5 +77,15 @@ class User extends LagoonOperationBase {
       'email' => $email,
       'group' => $group,
     ]);
+  }
+
+  /**
+   * Fetch all users from the API.
+   *
+   * @return Lagoon\LagoonQueryInterface
+   *   The lagoon query object.
+   */
+  public function all() {
+    return $this->query(SELF::FETCH_ALL);
   }
 }
