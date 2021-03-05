@@ -4,6 +4,7 @@ namespace Lagoon\Operation;
 
 use Lagoon\Operation\LagoonOperationBase;
 use Lagoon\Query\Users\FetchAll;
+use Lagoon\Query\Users\UsersByEmail;
 use Lagoon\Query\Users\UsersBySshKey;
 use Lagoon\Mutation\User\Add;
 use Lagoon\Mutation\User\AddUserToProject;
@@ -17,6 +18,7 @@ class User extends LagoonOperationBase {
    * Naming constants to use throughout the class.
    */
   const SSH_KEY = 'find_ssh_key';
+  const EMAIL = 'find_email';
   const ADD = 'add';
   const ADD_TO_PROJECT = 'add_to_project';
   const FETCH_ALL = 'all';
@@ -26,6 +28,7 @@ class User extends LagoonOperationBase {
    */
   protected function bind() {
     $this->addQuery(self::SSH_KEY, UsersBySshKey::class)
+      ->addQuery(self::EMAIL, UsersByEmail::class)
       ->addQuery(self::FETCH_ALL, FetchAll::class)
       ->addMutation(self::ADD, Add::class)
       ->addMutation(self::ADD_TO_PROJECT, AddUserToProject::class)
@@ -88,4 +91,17 @@ class User extends LagoonOperationBase {
   public function all() {
     return $this->query(SELF::FETCH_ALL);
   }
+
+  /**
+   * Fetch a user by email address.
+   *
+   * @return Lagoon\LagoonQueryInterface
+   *   The lagoon query object.
+   */
+  public function withEmail($email) {
+    return $this->query(SELF::EMAIL, [
+      'email' => $email,
+    ]);
+  }
+
 }
