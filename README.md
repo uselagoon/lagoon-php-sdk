@@ -2,7 +2,17 @@
 
 The *Lagoon SDK for PHP* makes it easy for developers to connect their applications to the Lagoon GraphQL service in PHP Code.
 
-## Getting started
+## Table of Contents
+1. Project Description
+2. Usage
+3. Contribution
+4. Acknowledgements
+
+## Project Description
+- add longer description here -
+
+## Usage
+### Getting started
 
 Require the package using [Composer](https://getcomposer.org/):
 
@@ -10,9 +20,9 @@ Require the package using [Composer](https://getcomposer.org/):
 composer require uselagoon/lagoon-php-sdk
 ```
 
-## Quick Examples
+### Quick Examples
 
-### Fetch all projects
+#### Fetch all projects
 
 See [`tests/lagoon-php-sdk-test`](tests/lagoon-php-sdk-test) for a working example. This script is [tested on GitHub](https://github.com/uselagoon/lagoon-php-sdk/actions).
 
@@ -46,7 +56,7 @@ try {
 }
 ```
 
-### Fetch all project names
+#### Fetch all project names
 
 ``` php
 <?php
@@ -57,7 +67,7 @@ $client = new LagoonClient($endpoint, $token);
 $projects = $client->project()->all()->fields(['name'])->execute();
 ```
 
-### Add a project
+#### Add a project
 
 ``` php
 <?php
@@ -75,7 +85,7 @@ $project = [
 $response = $client->project()->add($project)->execute();
 ```
 
-## Developing this Package
+## Contribution
 
 This package interacts with the Lagoon Container Hosting System's API.
 
@@ -104,8 +114,7 @@ The `bin/api-test` script will launch the containers and wait until the API cont
 
 The `api-start` script is simply a wrapper for the `make api-development` command inside `uselagoon/lagoon`. This is the same command used by Lagoon developers to work on the API, so a full development environment is available.
 
-## About this Package
-
+## Acknowledgements
 
 This project was originally developed by @steveworley et al in the repo https://github.com/steveworley/lagoon-php-sdk.
 It is currently being improved upon to be released as officially supported by the Lagoon Team. 
