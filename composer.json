@@ -32,7 +32,7 @@
   ],
   "require": {
     "php": ">=7",
-    "euautomation/graphql-client": "^0.2.0"
+    "euautomation/graphql-client": "dev-master"
   },
   "require-dev": {
     "couscous/couscous": "^1.7",
